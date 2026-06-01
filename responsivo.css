@@ -50,7 +50,7 @@
 }
 
 @media (max-width: 480px) {
-  .hero__badge { padding: 14px 14px; font-size: 0.65rem; letter-spacing: 0.25em; }
+  .hero__badge { padding: 8px 14px; font-size: 0.65rem; letter-spacing: 0.25em; }
   .features__grid { grid-template-columns: 1fr; }
   .hero__title { font-size: 2.4rem; }
   .about__img-main { width: 240px; height: 240px; font-size: 6rem; }
