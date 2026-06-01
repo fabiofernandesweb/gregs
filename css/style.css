@@ -256,10 +256,10 @@ ul { list-style: none; }
 .hero__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 60%, rgba(214,40,40,0.25) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 30%, rgba(244,162,97,0.15) 0%, transparent 50%),
-    linear-gradient(160deg, #1a0505 0%, #111 40%, #0d0d0d 100%);
+  background-image: url('../img/hamburguer.png');
+  background-size: cover;
+  background-position: top center;
+  opacity: 0.18;
 }
 
 /* Noise texture overlay */
@@ -396,7 +396,7 @@ ul { list-style: none; }
 }
 
 /* ---------- SOBRE ---------- */
-.about { background: var(--black); }
+.about { background: black;}
 .about__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -444,7 +444,10 @@ ul { list-style: none; }
 .about__img-badge strong { font-family: var(--font-head); font-size: 1.4rem; line-height: 1; }
 .about__img-badge span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
-.about__text .section__title { text-align: left; }
+.about__text .section__title { 
+  text-align: left;
+  margin-bottom: 20px;
+}
 .about__text p { color: var(--gray-lt); margin-bottom: 16px; }
 .about__text .btn { margin-top: 10px; }
 
@@ -489,7 +492,18 @@ ul { list-style: none; }
 .feature-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
 
 /* ---------- DEPOIMENTOS ---------- */
-.testimonials { background: var(--black); }
+.testimonials { 
+  background:
+    linear-gradient(rgba(0,0,0,0.7),
+                    rgba(0,0,0,0.7)),
+    url('../img/bg-dep.jpg');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+
 .testimonials__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
