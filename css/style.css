@@ -259,7 +259,7 @@ ul { list-style: none; }
   background-image: url('../img/hamburguer.png');
   background-size: cover;
   background-position: top center;
-  opacity: 0.18;
+  opacity: 0.20;
 }
 
 /* Noise texture overlay */
@@ -494,8 +494,8 @@ ul { list-style: none; }
 /* ---------- DEPOIMENTOS ---------- */
 .testimonials { 
   background:
-    linear-gradient(rgba(0,0,0,0.7),
-                    rgba(0,0,0,0.7)),
+    linear-gradient(rgba(0,0,0,0.5),
+                    rgba(0,0,0,0.5)),
     url('../img/bg-dep.jpg');
 
   background-size: cover;
