@@ -3,7 +3,7 @@
 
 /* Tablet */
 
-@media (max-width: 1200px) {
+@media (max-width: 1058px) {
   .section { padding: 72px 0; }   
   .hamburger { display: flex; }
   .header__cta { display: none; }
@@ -40,7 +40,7 @@
 }
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: landscape){
   .section { padding: 72px 0; }
 
   /* Header mobile */
