@@ -81,7 +81,7 @@
   background-image: url('./img/burguer-fogo.jpg');
   background-size: cover;
   background-position: top center;
-  opacity: 0.20;
+  opacity: 0.25;
   }
 
   .hero__badge { display: flex; flex-direction: column; align-items: center; margin-bottom: 50px; gap: 24px;}
