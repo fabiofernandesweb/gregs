@@ -2,6 +2,29 @@
 /* ---------- RESPONSIVE ---------- */
 
 /* Tablet */
+
+@media (max-width: 1058px) {
+  .section { padding: 72px 0; }   
+  .hamburger { display: flex; }
+  .header__cta { display: none; }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,17,0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+    margin: 0;
+  }
+  .nav.open { opacity: 1; pointer-events: all; }
+  .nav__list { flex-direction: column; align-items: center; gap: 24px; }
+  .nav__link { font-size: 1.5rem; padding: 12px 24px; }
+}
+
 @media (max-width: 1024px) {
   .menu__grid { grid-template-columns: repeat(2, 1fr); }
   .features__grid { grid-template-columns: repeat(2, 1fr); }
@@ -50,6 +73,7 @@
 }
 
 @media (max-width: 480px) {
+
   .hero__bg {
   position: absolute;
   inset: 0;
