@@ -47,7 +47,7 @@
   .hamburger { display: flex; }
   .header__cta { display: none; }
 
-  .hero__badge { display: none; }
+  .hero__badge { display: flex; }
   .nav {
     position: fixed;
     inset: 0;
