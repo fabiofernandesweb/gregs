@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | The Greg's Burguer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar__brand">
+        <img src="../img/loguinho.png" alt="Greg's Burguer">
+
+        <div>
+          <strong>The Greg's</strong>
+          <span>Burguer</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+
+        <p class="nav-title">MENU PRINCIPAL</p>
+
+        <a href="#" class="nav-item active">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a href="#" class="nav-item">
+          <span>🛒</span>
+          Pedidos
+          <b class="nav-badge">5</b>
+        </a>
+
+        <a href="#" class="nav-item">
+          <span>🍔</span>
+          Produtos
+        </a>
+
+        <a href="#" class="nav-item">
+          <span>👥</span>
+          Clientes
+        </a>
+
+        <p class="nav-title">GESTÃO</p>
+
+        <a href="#" class="nav-item">
+          <span>📦</span>
+          Estoque
+        </a>
+
+        <a href="#" class="nav-item">
+          <span>💰</span>
+          Financeiro
+        </a>
+
+        <a href="#" class="nav-item">
+          <span>📊</span>
+          Relatórios
+        </a>
+
+        <p class="nav-title">SISTEMA</p>
+
+        <a href="#" class="nav-item">
+          <span>⚙️</span>
+          Configurações
+        </a>
+
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="admin-avatar">FF</div>
+
+        <div class="admin-info">
+          <strong>Administrador</strong>
+          <span>Greg's Burguer</span>
+        </div>
+
+        <button title="Sair">↪</button>
+      </div>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="main">
+
+      <!-- HEADER -->
+      <header class="topbar">
+
+        <button class="menu-toggle" id="menuToggle">
+          ☰
+        </button>
+
+        <div>
+          <h1>Dashboard</h1>
+          <p>Visão geral da sua hamburgueria</p>
+        </div>
+
+        <div class="topbar__actions">
+
+          <button class="icon-button">
+            🔔
+            <span></span>
+          </button>
+
+          <div class="topbar__date">
+            📅
+            <span id="currentDate"></span>
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- CONTEÚDO -->
+      <section class="content">
+
+        <div class="welcome">
+          <div>
+            <span class="welcome-label">BEM-VINDO DE VOLTA 👋</span>
+            <h2>Olá, Administrador!</h2>
+            <p>Aqui está o resumo da Greg's Burguer hoje.</p>
+          </div>
+
+          <button class="primary-button" id="newOrderButton">
+            + Novo Pedido
+          </button>
+        </div>
+
+        <!-- CARDS -->
+        <div class="stats-grid">
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span>Faturamento hoje</span>
+              <div class="stat-icon green">R$</div>
+            </div>
+
+            <strong>R$ 1.842,70</strong>
+
+            <div class="stat-bottom positive">
+              ↑ 12,5%
+              <span>vs. ontem</span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span>Pedidos hoje</span>
+              <div class="stat-icon orange">🛒</div>
+            </div>
+
+            <strong>48</strong>
+
+            <div class="stat-bottom positive">
+              ↑ 8,2%
+              <span>vs. ontem</span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span>Ticket médio</span>
+              <div class="stat-icon red">⌁</div>
+            </div>
+
+            <strong>R$ 38,39</strong>
+
+            <div class="stat-bottom positive">
+              ↑ 4,7%
+              <span>vs. ontem</span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span>Clientes</span>
+              <div class="stat-icon purple">👥</div>
+            </div>
+
+            <strong>326</strong>
+
+            <div class="stat-bottom positive">
+              ↑ 15 novos
+              <span>este mês</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- GRÁFICOS -->
+        <div class="dashboard-grid">
+
+          <section class="panel sales-panel">
+
+            <div class="panel-header">
+              <div>
+                <h3>Faturamento</h3>
+                <p>Desempenho dos últimos 7 dias</p>
+              </div>
+
+              <select id="periodSelect">
+                <option>Últimos 7 dias</option>
+                <option>Últimos 30 dias</option>
+                <option>Este ano</option>
+              </select>
+            </div>
+
+            <div class="chart">
+
+              <div class="chart-y">
+                <span>R$ 2.000</span>
+                <span>R$ 1.500</span>
+                <span>R$ 1.000</span>
+                <span>R$ 500</span>
+                <span>R$ 0</span>
+              </div>
+
+              <div class="chart-area">
+
+                <div class="grid-line line-1"></div>
+                <div class="grid-line line-2"></div>
+                <div class="grid-line line-3"></div>
+                <div class="grid-line line-4"></div>
+                <div class="grid-line line-5"></div>
+
+                <svg
+                  class="sales-chart"
+                  viewBox="0 0 700 260"
+                  preserveAspectRatio="none"
+                >
+
+                  <defs>
+                    <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f4511e" stop-opacity=".35"/>
+                      <stop offset="100%" stop-color="#f4511e" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+
+                  <path
+                    class="chart-area-fill"
+                    d="M0,190
+                       C80,170 80,140 120,150
+                       C180,165 180,105 230,120
+                       C290,140 300,80 350,95
+                       C410,110 430,135 470,110
+                       C520,80 550,95 590,60
+                       C630,30 650,65 700,35
+                       L700,260 L0,260 Z"
+                  />
+
+                  <path
+                    class="chart-line"
+                    d="M0,190
+                       C80,170 80,140 120,150
+                       C180,165 180,105 230,120
+                       C290,140 300,80 350,95
+                       C410,110 430,135 470,110
+                       C520,80 550,95 590,60
+                       C630,30 650,65 700,35"
+                  />
+
+                </svg>
+
+                <div class="chart-labels">
+                  <span>Seg</span>
+                  <span>Ter</span>
+                  <span>Qua</span>
+                  <span>Qui</span>
+                  <span>Sex</span>
+                  <span>Sáb</span>
+                  <span>Dom</span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- PRODUTOS MAIS VENDIDOS -->
+          <section class="panel">
+
+            <div class="panel-header">
+              <div>
+                <h3>Mais vendidos</h3>
+                <p>Produtos com maior saída</p>
+              </div>
+
+              <a href="#">Ver todos</a>
+            </div>
+
+            <div class="products-ranking">
+
+              <div class="ranking-item">
+                <div class="ranking-number">01</div>
+
+                <img src="../img/greg's.jpg" alt="Greg's Classic">
+
+                <div class="ranking-info">
+                  <strong>Greg's Classic</strong>
+                  <span>42 pedidos</span>
+                </div>
+
+                <b>R$ 1.255</b>
+              </div>
+
+              <div class="ranking-item">
+                <div class="ranking-number">02</div>
+
+                <img src="../img/arretado.jpg" alt="Greg's Arretado">
+
+                <div class="ranking-info">
+                  <strong>Greg's Arretado</strong>
+                  <span>35 pedidos</span>
+                </div>
+
+                <b>R$ 1.326</b>
+              </div>
+
+              <div class="ranking-item">
+                <div class="ranking-number">03</div>
+
+                <img src="../img/classic.jpg" alt="Greg's Supreme">
+
+                <div class="ranking-info">
+                  <strong>Greg's Supreme</strong>
+                  <span>31 pedidos</span>
+                </div>
+
+                <b>R$ 1.081</b>
+              </div>
+
+              <div class="ranking-item">
+                <div class="ranking-number">04</div>
+
+                <img src="../img/fritas-2.jpg" alt="Greg's Fritas">
+
+                <div class="ranking-info">
+                  <strong>Greg's Fritas</strong>
+                  <span>27 pedidos</span>
+                </div>
+
+                <b>R$ 510</b>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+        <!-- PEDIDOS -->
+        <section class="panel orders-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <h3>Pedidos recentes</h3>
+              <p>Últimos pedidos realizados</p>
+            </div>
+
+            <a href="#">Ver todos os pedidos →</a>
+
+          </div>
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>PEDIDO</th>
+                  <th>CLIENTE</th>
+                  <th>ITENS</th>
+                  <th>FORMA DE PAGAMENTO</th>
+                  <th>TOTAL</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td><strong>#1048</strong></td>
+                  <td>
+                    <div class="customer">
+                      <span>JS</span>
+                      João Silva
+                    </div>
+                  </td>
+                  <td>2 itens</td>
+                  <td>PIX</td>
+                  <td><strong>R$ 59,80</strong></td>
+                  <td><span class="status delivered">Entregue</span></td>
+                </tr>
+
+                <tr>
+                  <td><strong>#1047</strong></td>
+                  <td>
+                    <div class="customer">
+                      <span>MS</span>
+                      Maria Souza
+                    </div>
+                  </td>
+                  <td>3 itens</td>
+                  <td>Cartão</td>
+                  <td><strong>R$ 53,80</strong></td>
+                  <td><span class="status preparing">Preparando</span></td>
+                </tr>
+
+                <tr>
+                  <td><strong>#1046</strong></td>
+                  <td>
+                    <div class="customer">
+                      <span>PL</span>
+                      Pedro Lima
+                    </div>
+                  </td>
+                  <td>2 itens</td>
+                  <td>PIX</td>
+                  <td><strong>R$ 37,90</strong></td>
+                  <td><span class="status new">Novo</span></td>
+                </tr>
+
+                <tr>
+                  <td><strong>#1045</strong></td>
+                  <td>
+                    <div class="customer">
+                      <span>AC</span>
+                      Ana Costa
+                    </div>
+                  </td>
+                  <td>4 itens</td>
+                  <td>Dinheiro</td>
+                  <td><strong>R$ 82,60</strong></td>
+                  <td><span class="status delivered">Entregue</span></td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+        <!-- PARTE INFERIOR -->
+        <div class="bottom-grid">
+
+          <!-- STATUS DOS PEDIDOS -->
+          <section class="panel">
+
+            <div class="panel-header">
+              <div>
+                <h3>Status dos pedidos</h3>
+                <p>Pedidos de hoje</p>
+              </div>
+            </div>
+
+            <div class="order-status">
+
+              <div class="status-row">
+                <div class="status-title">
+                  <span class="dot new-dot"></span>
+                  Novos
+                </div>
+                <strong>5</strong>
+              </div>
+
+              <div class="progress">
+                <span style="width: 35%; background:#ef4444"></span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-title">
+                  <span class="dot preparing-dot"></span>
+                  Preparando
+                </div>
+                <strong>8</strong>
+              </div>
+
+              <div class="progress">
+                <span style="width: 55%; background:#f59e0b"></span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-title">
+                  <span class="dot ready-dot"></span>
+                  Prontos
+                </div>
+                <strong>4</strong>
+              </div>
+
+              <div class="progress">
+                <span style="width: 30%; background:#22c55e"></span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-title">
+                  <span class="dot delivered-dot"></span>
+                  Entregues
+                </div>
+                <strong>31</strong>
+              </div>
+
+              <div class="progress">
+                <span style="width: 85%; background:#6366f1"></span>
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- ALERTAS -->
+          <section class="panel">
+
+            <div class="panel-header">
+              <div>
+                <h3>Atenção</h3>
+                <p>Informações importantes</p>
+              </div>
+            </div>
+
+            <div class="alerts">
+
+              <div class="alert alert-warning">
+                <span>⚠️</span>
+
+                <div>
+                  <strong>Estoque baixo</strong>
+                  <p>Greg's Fritas está com apenas 8 unidades.</p>
+                </div>
+              </div>
+
+              <div class="alert alert-info">
+                <span>ℹ️</span>
+
+                <div>
+                  <strong>15 novos clientes</strong>
+                  <p>Você ganhou novos clientes este mês.</p>
+                </div>
+              </div>
+
+              <div class="alert alert-success">
+                <span>✓</span>
+
+                <div>
+                  <strong>Meta atingida</strong>
+                  <p>Você atingiu 92% da meta mensal.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- MODAL NOVO PEDIDO -->
+  <div class="modal" id="orderModal">
+
+    <div class="modal-content">
+
+      <button class="modal-close" id="closeModal">×</button>
+
+      <span class="section-label">NOVO PEDIDO</span>
+
+      <h2>Criar pedido</h2>
+
+      <div class="form-group">
+        <label>Cliente</label>
+        <input type="text" id="customerName" placeholder="Nome do cliente">
+      </div>
+
+      <div class="form-group">
+        <label>Produto</label>
+
+        <select id="productSelect">
+          <option value="29.90">Greg's Classic — R$ 29,90</option>
+          <option value="34.90">Greg's Supreme — R$ 34,90</option>
+          <option value="37.90">Greg's Arretado — R$ 37,90</option>
+          <option value="28.90">Greg's Salad — R$ 28,90</option>
+          <option value="18.90">Greg's Fritas — R$ 18,90</option>
+          <option value="12.90">Greg's Vitamina — R$ 12,90</option>
+          <option value="9.90">Greg's Refrigerante — R$ 9,90</option>
+          <option value="18.90">Greg's Milkshake — R$ 18,90</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quantidade</label>
+        <input type="number" id="quantity" value="1" min="1">
+      </div>
+
+      <div class="modal-total">
+        <span>Total</span>
+        <strong id="modalTotal">R$ 29,90</strong>
+      </div>
+
+      <button class="primary-button full" id="createOrder">
+        Criar Pedido
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="./js/dashboard.js"></script>
+
+</body>
+</html>
