@@ -184,3 +184,429 @@
   });
 
 })();
+
+/* ==========================================
+   CARRINHO DE COMPRAS - GREG'S BURGUER
+========================================== */
+
+const cartFloating = document.getElementById("cartFloating");
+const cart = document.getElementById("cart");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartClose = document.getElementById("cartClose");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+const checkoutButton = document.getElementById("checkoutButton");
+const continueShopping = document.getElementById("continueShopping");
+
+let cartProducts = JSON.parse(
+  localStorage.getItem("gregsCart")
+) || [];
+
+
+/* ==========================================
+   FORMATAR DINHEIRO
+========================================== */
+
+function formatMoney(value) {
+
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+
+}
+
+
+/* ==========================================
+   ABRIR CARRINHO
+========================================== */
+
+function openCart() {
+
+  cart.classList.add("active");
+  cartOverlay.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+/* ==========================================
+   FECHAR CARRINHO
+========================================== */
+
+function closeCart() {
+
+  cart.classList.remove("active");
+  cartOverlay.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+}
+
+
+/* ==========================================
+   ADICIONAR PRODUTO
+========================================== */
+
+function addToCart(product) {
+
+  const existingProduct = cartProducts.find(
+    item => item.name === product.name
+  );
+
+
+  if (existingProduct) {
+
+    existingProduct.quantity++;
+
+  } else {
+
+    cartProducts.push({
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+
+  }
+
+
+  saveCart();
+
+  renderCart();
+
+  openCart();
+
+}
+
+
+/* ==========================================
+   REMOVER PRODUTO
+========================================== */
+
+function removeFromCart(index) {
+
+  cartProducts.splice(index, 1);
+
+  saveCart();
+
+  renderCart();
+
+}
+
+
+/* ==========================================
+   ALTERAR QUANTIDADE
+========================================== */
+
+function changeQuantity(index, change) {
+
+  cartProducts[index].quantity += change;
+
+
+  if (cartProducts[index].quantity <= 0) {
+
+    cartProducts.splice(index, 1);
+
+  }
+
+
+  saveCart();
+
+  renderCart();
+
+}
+
+
+/* ==========================================
+   SALVAR
+========================================== */
+
+function saveCart() {
+
+  localStorage.setItem(
+    "gregsCart",
+    JSON.stringify(cartProducts)
+  );
+
+}
+
+
+/* ==========================================
+   RENDERIZAR CARRINHO
+========================================== */
+
+function renderCart() {
+
+  if (!cartItems) {
+    return;
+  }
+
+
+  if (cartProducts.length === 0) {
+
+    cartItems.innerHTML = `
+
+      <div class="cart-empty">
+
+        <div class="cart-empty-icon">
+          🛒
+        </div>
+
+        <h3>Seu carrinho está vazio</h3>
+
+        <p>
+          Adicione seus hambúrgueres favoritos
+          para começar o pedido.
+        </p>
+
+      </div>
+
+    `;
+
+  } else {
+
+    cartItems.innerHTML = cartProducts
+      .map((product, index) => `
+
+        <div class="cart-item">
+
+          <img
+            class="cart-item-image"
+            src="${product.image}"
+            alt="${product.name}"
+          >
+
+          <div class="cart-item-info">
+
+            <div class="cart-item-name">
+              ${product.name}
+            </div>
+
+            <div class="cart-item-price">
+              ${formatMoney(product.price)}
+            </div>
+
+            <div class="cart-item-controls">
+
+              <button
+                class="cart-quantity-button"
+                onclick="changeQuantity(${index}, -1)">
+                −
+              </button>
+
+              <span class="cart-quantity">
+                ${product.quantity}
+              </span>
+
+              <button
+                class="cart-quantity-button"
+                onclick="changeQuantity(${index}, 1)">
+                +
+              </button>
+
+              <button
+                class="cart-remove"
+                onclick="removeFromCart(${index})">
+                Remover
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `)
+      .join("");
+
+  }
+
+
+  updateCartTotals();
+
+}
+
+
+/* ==========================================
+   ATUALIZAR TOTAIS
+========================================== */
+
+function updateCartTotals() {
+
+  const totalItems = cartProducts.reduce(
+    (total, product) => {
+      return total + product.quantity;
+    },
+    0
+  );
+
+
+  const totalPrice = cartProducts.reduce(
+    (total, product) => {
+      return total +
+        (product.price * product.quantity);
+    },
+    0
+  );
+
+
+  cartCount.textContent = totalItems;
+
+  cartTotal.textContent = formatMoney(totalPrice);
+
+  checkoutButton.disabled =
+    cartProducts.length === 0;
+
+}
+
+
+/* ==========================================
+   BOTÕES "ADICIONAR"
+========================================== */
+
+document
+  .querySelectorAll(".add-to-cart")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const product = {
+
+        name: button.dataset.name,
+
+        price: Number(
+          button.dataset.price
+        ),
+
+        image: button.dataset.image
+
+      };
+
+
+      addToCart(product);
+
+
+      const originalText =
+        button.textContent;
+
+      button.textContent = "Adicionado ✓";
+
+      setTimeout(() => {
+
+        button.textContent =
+          originalText;
+
+      }, 1200);
+
+    });
+
+  });
+
+
+/* ==========================================
+   EVENTOS
+========================================== */
+
+if (cartFloating) {
+
+  cartFloating.addEventListener(
+    "click",
+    openCart
+  );
+
+}
+
+if (cartClose) {
+
+  cartClose.addEventListener(
+    "click",
+    closeCart
+  );
+
+}
+
+if (cartOverlay) {
+
+  cartOverlay.addEventListener(
+    "click",
+    closeCart
+  );
+
+}
+
+if (continueShopping) {
+
+  continueShopping.addEventListener(
+    "click",
+    closeCart
+  );
+
+}
+
+
+/* ==========================================
+   ESC FECHA
+========================================== */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Escape") {
+
+      closeCart();
+
+    }
+
+  }
+);
+
+
+/* ==========================================
+   CHECKOUT
+========================================== */
+
+if (checkoutButton) {
+
+  checkoutButton.addEventListener(
+    "click",
+    () => {
+
+      if (cartProducts.length === 0) {
+        return;
+      }
+
+
+      /*
+       * NA PRÓXIMA ETAPA:
+       *
+       * Aqui vamos abrir o checkout
+       * com:
+       *
+       * Nome
+       * Telefone
+       * Endereço
+       * Observação
+       * Forma de pagamento
+       *
+       */
+
+      alert(
+        "Próxima etapa: finalizar o pedido."
+      );
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   INICIALIZAR
+========================================== */
+
+renderCart();
+
